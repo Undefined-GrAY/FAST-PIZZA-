@@ -8,6 +8,7 @@ import EmptyCart from "../cart/EmptyCart";
 
 import { formatCurrency } from "../../utils/helpers";
 import { fetchAddress } from "../../store/slices/userSlice";
+import { MdAddLocationAlt } from "react-icons/md";
 
 // const fakeCart = [
 //   {
@@ -103,36 +104,36 @@ function CreateOrder() {
           </div>
         </div>
 
-        <div className="mb-5 flex gap-2 flex-col sm:flex-row sm:items-center relative">
+        <div className="mb-5 flex gap-2 flex-col sm:flex-row sm:items-center relative  ">
           <label className="sm:basis-40">Address</label>
-          <div className="grow">
-            <input
-              type="text"
-              name="address"
-              required
-              disabled={isLoadingAddress}
-              value={address}
-              onChange={handleAddress}
-              className="input w-full"
-            />
-            {addressStatus === "error" && (
-              <p className="text-sx mt-2 text-red-700 rounded-md bg-red-100 p-2">
-                {errorAddress}
-              </p>
-            )}
-          </div>
-
-          <span className="absolute right-0.75 top-2 z-10">
-            {!position.latitude && !position.longitude && address === "" && (
-              <Button
+          <div className="relative grow">
+            <div className="grow">
+              <input
+                type="text"
+                name="address"
+                required
                 disabled={isLoadingAddress}
-                type="small"
-                onClick={handleDeliveryAddress}
-              >
-                Get position
-              </Button>
-            )}
-          </span>
+                value={address}
+                onChange={handleAddress}
+                className="input w-full"
+              />
+              {addressStatus === "error" && (
+                <p className="text-sx mt-2 text-red-700 rounded-md bg-red-100 p-2">
+                  {errorAddress}
+                </p>
+              )}
+            </div>
+            <span className="absolute right-4 top-2 md:top-3.25 z-10  text-xl ">
+              {!position.latitude && !position.longitude && address === "" && (
+                <Button
+                  disabled={isLoadingAddress}
+                  onClick={handleDeliveryAddress}
+                >
+                  <MdAddLocationAlt />
+                </Button>
+              )}
+            </span>
+          </div>
         </div>
 
         <div className="mb-12 flex gap-5 items-center">
